@@ -88,20 +88,55 @@ right = 0
 for i in range(len(s)):
   pass
 
+"""
+a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
+
+A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
+"""
+
+def equal_pairs(grid):
+    n = len(grid)
+    row_counts = {}
+    count = 0
+    for row in grid:
+        row_tuple = tuple(row)
+        row_counts[row_tuple] = row_counts.get(row_tuple, 0) + 1
+    for j in range(n):
+        column = tuple(grid[i][j] for i in range(n))
+        if column in row_counts:
+            count += row_counts[column]
+            
+    return count
+# grid = [[3,2,1],[1,7,6],[2,7,7]]
+# print(f"Total Equal Pairs: {equal_pairs(grid)}")
+
+"""
+You are given a string s, which contains stars *.
+
+In one operation, you can:
+
+Choose a star in s.
+Remove the closest non-star character to its left, as well as remove the star itself.
+Return the string after all stars have been removed.
+
+Note:
+
+The input will be generated such that the operation is always possible.
+It can be shown that the resulting string will always be unique.
+"""
+
+s = "leet**cod*e"
+stack =[]
+for i in s:
+  if i != '*':
+     stack.append(i)
+  else:
+     stack.pop()
+print(stack)
+      
+   
 
 
 
 
 
-
-
-
-# print(s[-3+0][-3+2])
-# print(s[i][j+1])
-# print(s[i][j+2])
-# print(s[i+1][j+2])
-# print(s[i+2][j+2])
-# print(s[i+2][j+2-1])
-# print(s[i+2][j+2-2])
-# print(s[i+2-1][j+2-2])
-# print(s[i+2-1][j+2-1])
